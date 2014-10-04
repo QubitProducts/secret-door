@@ -20,6 +20,17 @@ module.exports = function(config) {
       'test/test-main.js'
     ],
 
+    preprocessors: {
+      'lib/**/*.js': ['coverage']
+    },
+
+    reporters: ['progress', 'coverage'],
+
+    coverageReporter: {
+      type : 'text',
+      dir : 'coverage/'
+    },
+
     browsers: ['Chrome'],
 
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
