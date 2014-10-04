@@ -64,8 +64,8 @@ channel.execute("getAnswer", 2, 5).then(function (answer) {
 
 ### var channel = new Channel(options)
 
-* **options.targetWindow** - The window to send messages to (an iframeEl.contentWindow or window.parent)
-* **options.targetOrigin** - What the origin of the other window must be
+* **options.targetWindow** - The window to send messages to (e.g. iframeEl.contentWindow, window.parent)
+* **options.targetOrigin** - What the origin of the other window must be for sending messages
 * **options.namespace** - Allows using multiple instances of door on the same page
 * **options.filterIncoming** - A function that can reject an incoming message by inspecting the message event
 
