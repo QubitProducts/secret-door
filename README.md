@@ -38,6 +38,11 @@ channel.setHandler("*", function (command, arg1, arg2, arg3) {
   // all remote command calls that don't have a registered named handler can
   // be handler here
 });
+
+//call a function within the iframe
+channel.execute("getURL").then(function (url) {
+  console.log(url);
+});
 ```
 
 An iframe.
@@ -45,6 +50,10 @@ An iframe.
 ```js
 var channel = new Channel({
   targetWindow: window.parent
+}).setHandler({
+  getURL: function () {
+    return window.location.href;
+  }
 });
 channel.execute("getAnswer", 2, 5).then(function (answer) {
   console.log(answer);
