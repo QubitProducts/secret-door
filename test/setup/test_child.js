@@ -3,7 +3,11 @@ require.config({
 });
 require(['door'], function (Door) {
   window.__child = true;
-  window.door = new Door({
+  window.channel1 = new Door({
     targetWindow: window.parent
+  });
+  window.channel2 = new Door({
+    targetWindow: window.parent,
+    namespace: 'differentNamespace'
   });
 });

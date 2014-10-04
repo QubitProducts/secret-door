@@ -26,7 +26,7 @@ module.exports = function(config) {
     reporters: ['progress', 'coverage'],
 
     coverageReporter: {
-      type : 'text',
+      type : 'html',
       dir : 'coverage/'
     },
 
