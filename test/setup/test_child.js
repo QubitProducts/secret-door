@@ -10,4 +10,8 @@ require(['door'], function (Door) {
     targetWindow: window.parent,
     namespace: 'differentNamespace'
   });
+
+  window.pm = function (data, origin) {
+    window.parent.postMessage(data, origin);
+  };
 });

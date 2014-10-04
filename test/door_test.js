@@ -118,6 +118,46 @@ define(function (require) {
     });
 
 
+    describe('set catch all handler (*)', function () {
+      var fooHandler, starHandler;
+      beforeEach(function () {
+        fooHandler = sinon.stub();
+        starHandler = sinon.stub();
+        channel1.setHandler('foo', fooHandler);
+        channel1.setHandler('*', starHandler);
+      });
+
+      it('calls the global handler when no other handler matches', function () {
+        return childChannel1.execute('foo', 'fooArg').then(function () {
+          expect(fooHandler.args[0]).to.be.eql(['fooArg']);
+          return childChannel1.execute('bar', 'barArg');
+        }).then(function () {
+          expect(starHandler.args[0]).to.be.eql(['bar', 'barArg']);
+        });
+      });
+    });
+
+
+    describe('filterIncoming', function () {
+      var filterIncoming;
+      it('allows filtering incoming messages', function () {
+        var c1 = 0;
+        channel1.tap(function () { c1++; });
+        $iframe.get(0).contentWindow.pm('{"filterMe":true,"namespace":"door"}', '*');
+        filterIncoming = sinon.spy(function (data, messageEvent) {
+          // assert we get data and messageEvent as arguments
+          expect(messageEvent.data === JSON.stringify(data)).to.be(true);
+          return !data.filterMe;
+        });
+        channel1.options.filterIncoming = filterIncoming;
+        return childChannel1.execute('filterMe').catch(function () {
+          expect(c1).to.be(1);
+          expect(filterIncoming.called).to.be(true);
+        });
+      });
+    });
+
+
     describe('promises that are returned in the handler', function () {
 
       beforeEach(function () {
@@ -232,6 +272,32 @@ define(function (require) {
           return childChannel2.execute('foo').catch(function () {
             expect(c1).to.be(0);
             expect(c2).to.be(1);
+          });
+        });
+      });
+    });
+
+
+    describe('foreign messages', function () {
+      describe('invalid JSON', function () {
+        it('gets ignored', function () {
+          var c1 = 0;
+          channel1.tap(function () { c1++; });
+          $iframe.get(0).contentWindow.pm('{not valid json}', '*');
+          return childChannel1.execute('foo').catch(function () {
+            expect(c1).to.be(1);
+          });
+        });
+      });
+      describe('different messageEvent.source', function () {
+        it('gets ignored', function () {
+          var c1 = 0;
+          channel1.tap(function () { c1++; });
+          // this is a message from window to window, so the source
+          // won't match up the expected source in channel1 door
+          window.postMessage('{"foo": "bar"}', '*');
+          return childChannel1.execute('foo').catch(function () {
+            expect(c1).to.be(1);
           });
         });
       });
