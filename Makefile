@@ -9,6 +9,7 @@ test: clean
 	$(BIN)/jshint --reporter node_modules/jshint-stylish/stylish.js $(SRC) $(TESTS)
 	$(BIN)/jscs $(SRC) $(TESTS)
 	$(BIN)/karma start --single-run
+	make clean
 
 watch:
 	$(BIN)/karma start
