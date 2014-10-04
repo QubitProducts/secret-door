@@ -16,8 +16,8 @@ module.exports = function(config) {
       {pattern: 'test/child.html', included: false},
       {pattern: 'lib/**/*.js', included: false},
       {pattern: 'test/*_test.js', included: false},
-      {pattern: 'test/test-child.js', included: false},
-      'test/test-main.js'
+      {pattern: 'test/test_child.js', included: false},
+      'test/test_main.js'
     ],
 
     preprocessors: {
