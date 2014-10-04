@@ -12,7 +12,7 @@ define(function (require) {
     beforeEach(function (done) {
       $iframe = $('<iframe></iframe>');
       $iframe
-        .attr('src', 'base/test/child.html')
+        .attr('src', 'base/test/setup/child.html')
         .load(function () {
           door = new Door({
             targetWindow: $iframe.get(0).contentWindow

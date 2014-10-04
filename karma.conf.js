@@ -12,12 +12,11 @@ module.exports = function(config) {
       {pattern: 'node_modules/sinon/pkg/sinon.js', included: false},
       {pattern: 'node_modules/expect.js/expect.js', included: false},
       {pattern: 'node_modules/jquery/dist/jquery.js', included: false},
-      {pattern: 'bower_components/**/*.js', included: false},
-      {pattern: 'test/child.html', included: false},
+      {pattern: 'test/setup/child.html', included: false},
+      {pattern: 'test/setup/test_child.js', included: false},
       {pattern: 'lib/**/*.js', included: false},
       {pattern: 'test/*_test.js', included: false},
-      {pattern: 'test/test_child.js', included: false},
-      'test/test_main.js'
+      'test/setup/test_main.js'
     ],
 
     preprocessors: {
