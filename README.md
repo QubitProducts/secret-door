@@ -95,7 +95,11 @@ Handlers can return promises.
 
 ### channel.clearHandler(name)
 
-Remove the handler.
+Remove a handler.
+
+### channel.clearAllHandlers(name)
+
+Remove all handlers.
 
 ### channel.execute(fnName, ...args)
 
