@@ -107,6 +107,10 @@ Execute a function on the other side of the channel. First argument is the name 
 
 Returns a promise.
 
+### channel.tap(fn)
+
+Listen in on all requests/responses going through this channel. The callback will be called with 1 object describing the request or response. Only messages that actually go via the channel will be tapped, in other words if the message is in the wrong namespace, wrong origin or is filtered by `filterIncoming` it won't show up in the tap.
+
 ### channel.destroy()
 
 Remove handler references and stop listening to events.

@@ -119,6 +119,42 @@ define(function (require) {
 
     });
 
+    describe('tap', function () {
+      var tap;
+      beforeEach(function () {
+        door.setHandler('test', function () {
+          return 45;
+        });
+        childDoor.setHandler('url', function () {
+          return "www";
+        });
+        tap = sinon.stub();
+        door.tap(tap);
+      });
+      it('allows listening in on all communication going via this channel', function () {
+        return childDoor.execute('test').then(function () {
+          return door.execute('url');
+        }).then(function () {
+          var arg1 = tap.args[0][0];
+          delete arg1.id;
+          expect(arg1).to.eql({
+            type: 'request',
+            data: [ 'test' ],
+            namespace: 'door'
+          });
+
+          var arg2 = tap.args[1][0];
+          delete arg2.id;
+          expect(arg2).to.eql({
+            type: 'response',
+            data: 'www',
+            success: true,
+            namespace: 'door'
+          });
+        });
+      });
+    });
+
 
     describe('destroy', function () {
       var callback;
