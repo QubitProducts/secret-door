@@ -1,7 +1,7 @@
-requirejs.config({
-  baseUrl: "/base/lib"
+require.config({
+  baseUrl: '/base/lib'
 });
-require(["door"], function (Door) {
+require(['door'], function (Door) {
   window.__child = true;
   window.door = new Door({
     targetWindow: window.parent

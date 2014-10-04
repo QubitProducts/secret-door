@@ -126,7 +126,7 @@ define(function (require) {
           return 45;
         });
         childDoor.setHandler('url', function () {
-          return "www";
+          return 'www';
         });
         tap = sinon.stub();
         door.tap(tap);
