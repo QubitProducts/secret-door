@@ -136,3 +136,11 @@ Remove handler references and stop listening to events.
 ```
 npm test
 ```
+
+## Release
+
+```
+npm run release
+```
+
+Follow semver rules when specifying a new version.
