@@ -1,3 +1,7 @@
+### 1.1.2
+
+* fix Array.prototype.toJSON pollution - we don't set that to undefined anymore
+
 ### 1.1.1
 
 * fix handleMessage where the hoisted targetOrigin was referring to a unhoisted variable in certain scenarios
