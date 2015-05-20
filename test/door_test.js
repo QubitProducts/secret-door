@@ -334,7 +334,6 @@ define(function (require) {
 
 
     describe('destroy', function () {
-
       beforeEach(function () {
         channel1.setHandler('*', function () {});
         channel1.setHandler({
@@ -349,6 +348,42 @@ define(function (require) {
         channel1.destroy();
         expect(channel1.handlers).to.be.eql({});
         expect(channel1.unbindEvents.calledOnce).to.be(true);
+      });
+    });
+
+    describe('safe json', function () {
+      var childHandler;
+      var arrayToJSON = Array.prototype.toJSON;
+
+      beforeEach(function () {
+        childHandler = sinon.stub();
+        childChannel1.setHandler('test', childHandler);
+      });
+
+      afterEach(function () {
+        if (arrayToJSON) {
+          Array.prototype.toJSON = arrayToJSON;
+        }
+      });
+
+      it('should not add non-existing toJSON to Array.prototype', function () {
+        // pretend we have no native toJSON
+        delete Array.prototype.toJSON;
+        return channel1.execute('test').then(function () {
+          expect(childHandler.calledOnce).to.be(true);
+          expect('toJSON' in Array.prototype).to.be(false);
+        });
+      });
+
+      it('should keep any existing native Array.prototype.toJSON', function () {
+        // create custom toJSON
+        Array.prototype.toJSON = function () {
+          return '[]';
+        };
+        return channel1.execute('test').then(function () {
+          expect(childHandler.calledOnce).to.be(true);
+          expect(['hello'].toJSON()).to.eql('[]');
+        });
       });
     });
 
