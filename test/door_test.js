@@ -362,7 +362,7 @@ define(function (require) {
 
       afterEach(function () {
         if (arrayToJSON) {
-          Array.prototype.toJSON = arrayToJSON;
+          Array.prototype.toJSON = arrayToJSON; // jshint ignore:line
         }
       });
 
@@ -377,7 +377,7 @@ define(function (require) {
 
       it('should keep any existing native Array.prototype.toJSON', function () {
         // create custom toJSON
-        Array.prototype.toJSON = function () {
+        Array.prototype.toJSON = function () { // jshint ignore:line
           return '[]';
         };
         return channel1.execute('test').then(function () {
