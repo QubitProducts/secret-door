@@ -1,8 +1,3 @@
-(function (define) { 'use strict';
-  define(function (require) {
+import Door from './lib/door';
 
-    return require('./lib/door');
-
-  });
-})(typeof define === 'function' && define.amd ? define :
-/* istanbul ignore next */ function (factory) { module.exports = factory(require); });
+export default Door;
