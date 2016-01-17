@@ -2,6 +2,7 @@ BIN = ./node_modules/.bin
 
 SRC = lib
 TESTS = test
+DIST = dist
 
 .PHONY: test watch clean
 
@@ -16,3 +17,7 @@ watch:
 
 clean:
 	rm -rf coverage
+
+build:
+	$(BIN)/rollup -n Door -f umd index.js > $(DIST)/door-umd.js
+	$(BIN)/rollup index.js > $(DIST)/door-es6.js
