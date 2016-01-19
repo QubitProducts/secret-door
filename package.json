@@ -3,10 +3,15 @@
   "version": "1.1.2",
   "scripts": {
     "test": "make test",
-    "release": "release"
+    "release": "release",
+    "prepublish": "make build"
   },
   "main": "dist/door-umd.js",
   "jsnext:main": "dist/door-es6.js",
+  "files": [
+    "dist/door-es6.js",
+    "dist/door-umd.js"
+  ],
   "devDependencies": {
     "expect.js": "~0.2.0",
     "jquery": "^2.1.1",
