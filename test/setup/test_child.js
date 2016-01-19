@@ -1,7 +1,7 @@
 require.config({
-  baseUrl: '/base/lib'
+  baseUrl: '/base/dist'
 });
-require(['door'], function (Door) {
+require(['door-umd'], function (Door) {
   window.__child = true;
   window.channel1 = new Door({
     targetWindow: window.parent

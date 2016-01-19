@@ -3,7 +3,7 @@ var tests = Object.keys(window.__karma__.files).filter(function (file) {
 });
 
 require.config({
-  baseUrl: '/base/lib',
+  baseUrl: '/base/dist',
   paths: {
     // also add these to karma.conf.js
     'sinon': '../node_modules/sinon/pkg/sinon',

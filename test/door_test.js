@@ -4,7 +4,7 @@ define(function (require) {
   var sinon = require('sinon');
   var expect = require('expect');
 
-  var Door = require('door');
+  var Door = require('door-umd');
   // var DoorError = require('error');
 
   describe('door', function () {
