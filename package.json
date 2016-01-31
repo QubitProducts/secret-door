@@ -13,6 +13,7 @@
     "dist/door-umd.js"
   ],
   "devDependencies": {
+    "chokidar": "^1.4.2",
     "expect.js": "~0.2.0",
     "jquery": "^2.1.1",
     "jscs": "^2.8.0",

@@ -14,7 +14,7 @@ test: clean
 	make clean
 
 watch: build
-	$(BIN)/karma start
+	node watchAndRebuild.js
 
 clean:
 	rm -rf coverage
