@@ -14,13 +14,13 @@ module.exports = function(config) {
       {pattern: 'node_modules/jquery/dist/jquery.js', included: false},
       {pattern: 'test/setup/child.html', included: false},
       {pattern: 'test/setup/test_child.js', included: false},
-      {pattern: 'lib/**/*.js', included: false},
-      {pattern: 'test/*_test.js', included: false},
+      {pattern: 'dist/door-umd.js', included: false},
+      {pattern: 'test/door_test.js', included: false},
       'test/setup/test_main.js'
     ],
 
     preprocessors: {
-      'lib/**/*.js': ['coverage']
+      'dist/door-umd.js': ['coverage']
     },
 
     reporters: ['progress', 'coverage'],

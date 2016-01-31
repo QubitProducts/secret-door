@@ -3,13 +3,20 @@
   "version": "1.1.2",
   "scripts": {
     "test": "make test",
-    "release": "release"
+    "release": "release",
+    "prepublish": "make build"
   },
-  "main": "index",
+  "main": "dist/door-umd.js",
+  "jsnext:main": "dist/door-es6.js",
+  "files": [
+    "dist/door-es6.js",
+    "dist/door-umd.js"
+  ],
   "devDependencies": {
+    "chokidar": "^1.4.2",
     "expect.js": "~0.2.0",
     "jquery": "^2.1.1",
-    "jscs": "^1.6.2",
+    "jscs": "^2.8.0",
     "jshint": "^2.5.6",
     "jshint-stylish": "^1.0.0",
     "karma": "^0.12.16",
@@ -22,6 +29,7 @@
     "kn-release": "^0.1.2",
     "mocha": "^1.20.1",
     "requirejs": "^2.1.14",
+    "rollup": "^0.24.1",
     "sinon": "~1.6.0"
   }
 }
